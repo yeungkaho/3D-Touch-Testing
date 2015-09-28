@@ -5,7 +5,7 @@
 //  Created by 杨嘉浩 on 15/9/25.
 //  Copyright © 2015年 ykh. All rights reserved.
 //
-
+//////
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -40,6 +40,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler{
+    NSString *str = [NSString stringWithFormat:@"shortcut title:%@\nsubtitle:%@",shortcutItem.localizedTitle,shortcutItem.localizedSubtitle];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"came in through a shortcut" message:str preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end
